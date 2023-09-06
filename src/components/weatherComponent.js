@@ -13,7 +13,7 @@ function GetWeather(props)
 
         const callApi = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/weather?lat=${lat}&lon=${long}`);
+                const response = await axios.get(`https://weatherapp-backend-production-11ff.up.railway.app/api/weather?lat=${lat}&lon=${long}`);
                 setWeatherData(response.data);
             }
             catch(error){
@@ -56,7 +56,7 @@ function GetWeather(props)
     const subGridStyle = {
       textAlign: 'center',
       borderRight: '1px solid #282c34', // Add a border on the right
-      '&:last-child': {
+      '&:lastChild': {
         borderRight: 'none',
       },
     };
@@ -105,10 +105,22 @@ function GetWeather(props)
                 <Grid container spacing={2} style = {gridStyle}>
                   {Array.from( {length: 6}).map((_, index) => (
                     <Grid style={subGridStyle} xs={2} key={index}>
+                      {(() =>{
+                        const hourIndex = (currentHour + index + 1) % 24;
+                        
+                        return(
+                          <>
+                          <p1 style={{color: '#282c34'}} >{convertTime(weatherData.forecast.forecastday[0].hour[hourIndex].time)}</p1>
+                          <h3><img src={weatherData.forecast.forecastday[0].hour[hourIndex].condition.icon} alt="Weather Icon"/></h3>
+                          <h3>{weatherData.forecast.forecastday[0].hour[hourIndex].temp_f}°</h3>
+                          </>
+                        );
+                      })()}
                       
-                      <p1 style={{color: '#282c34'}} >{convertTime(weatherData.forecast.forecastday[0].hour[currentHour+index + 1].time)}</p1>
-                      <h3><img src={weatherData.forecast.forecastday[0].hour[currentHour+index + 1].condition.icon} alt="Weather Icon"/></h3>
-                      <h3>{weatherData.forecast.forecastday[0].hour[currentHour+index + 1].temp_f}°</h3>
+{/* 
+                      <p1 style={{color: '#282c34'}} >{convertTime(weatherData.forecast.forecastday[0].hour[hourIndex].time)}</p1>
+                      <h3><img src={weatherData.forecast.forecastday[0].hour[hourIndex].condition.icon} alt="Weather Icon"/></h3>
+                      <h3>{weatherData.forecast.forecastday[0].hour[hourIndex].temp_f}°</h3> */}
                     </Grid>
                   ))}
                 </Grid>
