@@ -13,21 +13,23 @@ function GetWeather(props)
 
         const callApi = async () => {
             try {
-                const response = await axios.get(`https://weatherapp-backend-production-11ff.up.railway.app/api/weather?lat=${lat}&lon=${long}`);
-                setWeatherData(response.data);
+              const response = await axios.get(`https://weatherapp-backend-production-11ff.up.railway.app/api/weather?lat=${lat}&lon=${long}`);
+              setWeatherData(response.data);
             }
             catch(error){
                 console.error(error);
             }
         };
 
-        setInterval(() =>
+        callApi();
+
+        const intervalId = setInterval(() =>
         {
           setCurrentHour(new Date().getHours());
         }, 1000 * 60 * 60);
 
-        callApi();  
-    }, [lat,long]);
+        return () => clearInterval(intervalId);
+    }, []);
 
     function convertTime(date)
     {
@@ -81,19 +83,19 @@ function GetWeather(props)
               <Container style={gridStyle}>
                 <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} style={gridStyle}>
                   <Grid xs={6} style={subGridStyle}>
-                    <p1>Feels Like</p1>
+                    <p>Feels Like</p>
                     <h3>{weatherData.current.feelslike_f}°</h3>
                   </Grid>
                   <Grid xs={6} style={subGridStyle}>
-                    <p1>Wind</p1>
+                    <p>Wind</p>
                     <h3>{weatherData.current.wind_mph} mph</h3>
                   </Grid>
                   <Grid xs={6} style={subGridStyle}>
-                    <p1>UV</p1>
+                    <p>UV</p>
                     <h3>{weatherData.current.uv}</h3>
                   </Grid>
                   <Grid xs={6} style={subGridStyle}>
-                    <p1>Chance of Rain</p1>
+                    <p>Chance of Rain</p>
                     <h3>{weatherData.current.precip_in}</h3>
                   </Grid>
                 </Grid>
@@ -110,7 +112,7 @@ function GetWeather(props)
                         
                         return(
                           <>
-                          <p1 style={{color: '#282c34'}} >{convertTime(weatherData.forecast.forecastday[0].hour[hourIndex].time)}</p1>
+                          <p style={{color: '#282c34'}} >{convertTime(weatherData.forecast.forecastday[0].hour[hourIndex].time)}</p>
                           <h3><img src={weatherData.forecast.forecastday[0].hour[hourIndex].condition.icon} alt="Weather Icon"/></h3>
                           <h3>{weatherData.forecast.forecastday[0].hour[hourIndex].temp_f}°</h3>
                           </>
