@@ -13,7 +13,7 @@ function GetWeather(props)
 
         const callApi = async () => {
             try {
-              const response = await axios.get(`https://weatherapp-backend-production-11ff.up.railway.app/api/weather?lat=${lat}&lon=${long}`);
+              const response = await axios.get(`http://localhost:5000/api/weather?lat=${lat}&lon=${long}`);
               setWeatherData(response.data);
             }
             catch(error){
@@ -108,28 +108,21 @@ function GetWeather(props)
                   {Array.from( {length: 6}).map((_, index) => (
                     <Grid style={subGridStyle} xs={2} key={index}>
                       {(() =>{
-                        const hourIndex = (currentHour + index + 1) % 24;
-                        
+                        const hourIndex = (currentHour + index + 1) % 24;     //If Forecase needs to display both current day and next day temps.
+                        const dayOffset = (currentHour + index + 1) >= 24 ? 1 : 0;
+
                         return(
                           <>
                           <p style={{color: '#282c34'}} >{convertTime(weatherData.forecast.forecastday[0].hour[hourIndex].time)}</p>
-                          <h3><img src={weatherData.forecast.forecastday[0].hour[hourIndex].condition.icon} alt="Weather Icon"/></h3>
-                          <h3>{weatherData.forecast.forecastday[0].hour[hourIndex].temp_f}°</h3>
+                          <h3><img src={weatherData.forecast.forecastday[dayOffset].hour[hourIndex].condition.icon} alt="Weather Icon"/></h3>
+                          <h3>{weatherData.forecast.forecastday[dayOffset].hour[hourIndex].temp_f}°</h3>
                           </>
                         );
                       })()}
-                      
-{/* 
-                      <p1 style={{color: '#282c34'}} >{convertTime(weatherData.forecast.forecastday[0].hour[hourIndex].time)}</p1>
-                      <h3><img src={weatherData.forecast.forecastday[0].hour[hourIndex].condition.icon} alt="Weather Icon"/></h3>
-                      <h3>{weatherData.forecast.forecastday[0].hour[hourIndex].temp_f}°</h3> */}
                     </Grid>
                   ))}
                 </Grid>
               </Container>
-                
-
-
             </div>
           ) : (
             <div>Loading...</div>
