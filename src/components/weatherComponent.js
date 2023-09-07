@@ -32,15 +32,6 @@ function GetWeather(props)
     backgroundColor: '#49515f',
     //#F8F8F8
   };
-  const subGridStyle = {
-    textAlign: 'center',
-    borderRight: '1px solid #282c34', // Add a border on the right
-    '&:lastChild': {
-      borderRight: 'none',
-    },
-  };
-
-  
 
   return (
       <div>
