@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('../public/cloud_background.jpg');
 }
 
 code {
@@ -12,4 +13,7 @@ code {
     monospace;
 }
 
+.background {
+  background-image: url('../public/cloud_background.jpg');
 
+}

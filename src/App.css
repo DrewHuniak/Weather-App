@@ -15,6 +15,9 @@
 
 .App-header {
   background-color: #282c34;
+  background-image: url('../public/cloud_background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,3 +41,4 @@
     transform: rotate(360deg);
   }
 }
+

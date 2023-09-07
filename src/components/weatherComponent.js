@@ -14,7 +14,7 @@ function GetWeather(props)
 
       const callApi = async () => {
           try {
-            const response = await axios.get(`https://weatherapp-backend-production-11ff.up.railway.app/api/weather?lat=${lat}&lon=${long}`);
+            const response = await axios.get(`http://localhost:5000/api/weather?lat=${lat}&lon=${long}`);
             setWeatherData(response.data);
           }
           catch(error){
@@ -29,7 +29,9 @@ function GetWeather(props)
     padding: '0.5px', // Optional: Add padding to space content from the border
     margin: '5px',
     borderRadius: '30px',
-    backgroundColor: '#49515f',
+   // backgroundColor: '#49515f',
+   backgroundColor: 'rgba(73, 81, 95, 0.75)',
+    
     //#F8F8F8
   };
 
@@ -39,14 +41,14 @@ function GetWeather(props)
           <div>
 
             <Container>
-                <Grid container style={gridStyle}>
+                <Grid container sx={{border: 1, borderRadius: '30px'}}>
                   <Grid  xs={6}>
                      <h1 style={{textAlign: 'left', paddingLeft: '30px'}}>{weatherData.location.name}</h1>
+                     <h2 style={{textAlign: 'left', paddingLeft: '30px', color: '#49515f'}}>{weatherData.location.region}</h2>
                   </Grid>
                   <Grid  xs={6}>
-                    <h2 style={{textAlign: 'left', paddingLeft: '30px', color: '#282c34'}}>{weatherData.location.region}</h2>
-                  </Grid>
                     <h1 style={{textAlign: 'left', paddingLeft: '30px'}}>{weatherData.current.temp_f}°</h1>
+                  </Grid>
                 </Grid>
 
                 <Grid container style={gridStyle}>

@@ -32,7 +32,6 @@ function GetForecast(props)
       padding: '0.5px', // Optional: Add padding to space content from the border
       margin: '5px',
       borderRadius: '30px',
-      backgroundColor: '#49515f',
       //#F8F8F8
     };
 
