@@ -47,7 +47,7 @@ function GetForecast(props)
     return(
         <>
             <p style={{textAlign: 'left', paddingLeft: '30px'}}>Todays Forecast</p>
-            <Grid item container spacing={12} style = {gridStyle}>
+            <Grid container spacing={12} style = {gridStyle}>
             {Array.from( {length: 6}).map((_, index) => (
                 <Grid style={{...subGridStyle, borderRight: index < 5 ? '1px solid #282c34' : 'none'}} xs={2} key={index}>
                 {(() =>{

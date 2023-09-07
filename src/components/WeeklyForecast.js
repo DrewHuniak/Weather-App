@@ -29,9 +29,9 @@ function getWeeklyForecast(props)
     return(
         <>
         <p style={{textAlign: 'left', paddingLeft: '30px'}}>Next Few Days</p>
-            <Grid container item xs={12} style={gridStyle}>
+            <Grid container style={gridStyle}>
                 {Array.from({length: 3}).map((_, index) =>(
-                <Grid style={{...subGridStyle, borderRight: index < 2 ? '1px solid #282c34' : 'none'}} xs={4} key={index}>
+                <Grid style={{...subGridStyle, borderRight: index < 2 ? '1px solid #282c34' : 'none'}} item xs={4} key={index}>
                     <p>{getDayName(weatherData.forecast.forecastday[index].date)}</p>
                     <p style={{color: '#282c34'}}>High: {weatherData.forecast.forecastday[index].day.maxtemp_f}°</p>
                     <p style={{color: '#282c34'}}>Low: {weatherData.forecast.forecastday[index].day.mintemp_f}°</p>
