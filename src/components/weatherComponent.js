@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
-import Forecast from './Forecast'
+import Forecast from './Forecast';
+import WeeklyForecast from './WeeklyForecast';
 
 function GetWeather(props)
 {
@@ -23,7 +24,6 @@ function GetWeather(props)
       callApi();
   }, [lat, long]);
 
-
   const gridStyle = {
     border: '2px', // Define the border properties here
     padding: '0.5px', // Optional: Add padding to space content from the border
@@ -31,7 +31,16 @@ function GetWeather(props)
     borderRadius: '30px',
     backgroundColor: '#49515f',
     //#F8F8F8
-  }; 
+  };
+  const subGridStyle = {
+    textAlign: 'center',
+    borderRight: '1px solid #282c34', // Add a border on the right
+    '&:lastChild': {
+      borderRight: 'none',
+    },
+  };
+
+  
 
   return (
       <div>
@@ -62,12 +71,16 @@ function GetWeather(props)
                     </Grid>
                     <Grid item xs={3}>
                     <p>Chance of Rain</p>
-                      <h3>{weatherData.current.precip_in}</h3>
+                      <h3>{weatherData.current.precip_in}%</h3>
                     </Grid>
                 </Grid>
 
               <Grid container item xs={12} style={gridStyle}>
-                  <Forecast weatherData = {weatherData} />
+                  <Forecast weatherData={weatherData}/>
+              </Grid>
+
+              <Grid container item xs={12} style={gridStyle}>
+                  <WeeklyForecast weatherData = {weatherData}/>
               </Grid>
 
             </Container>

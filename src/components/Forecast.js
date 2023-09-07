@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Grid from '@mui/material/Unstable_Grid2';
 function GetForecast(props)
 {
-    const {weatherData} = props;
+    
+    const weatherData = props.weatherData;
     const [currentHour, setCurrentHour] = useState(new Date().getHours());
 
     useEffect(() => {
@@ -26,24 +27,22 @@ function GetForecast(props)
         formattedTime
       );
     }
+    const gridStyle = {
+      border: '2px', // Define the border properties here
+      padding: '0.5px', // Optional: Add padding to space content from the border
+      margin: '5px',
+      borderRadius: '30px',
+      backgroundColor: '#49515f',
+      //#F8F8F8
+    };
 
     const subGridStyle = {
-        textAlign: 'center',
-        borderRight: '1px solid #282c34', // Add a border on the right
-        '&:lastChild': {
-          borderRight: 'none',
-        },
-      };
-    
-      const gridStyle = {
-        border: '2px', // Define the border properties here
-        padding: '0.5px', // Optional: Add padding to space content from the border
-        margin: '5px',
-        borderRadius: '30px',
-        backgroundColor: '#49515f',
-        //#F8F8F8
-      }; 
-
+      textAlign: 'center',
+      borderRight: '1px solid #282c34', // Add a border on the right
+      '&:lastChild': {
+        borderRight: 'none',
+      },
+    };
 
     return(
         <>
