@@ -16,7 +16,7 @@ function GetWeather(props)
 
       const callApi = async () => {
           try {
-            const response = await axios.get(`http://localhost:5000/api/weather?lat=${lat}&lon=${long}`);
+            const response = await axios.get(`https://weatherapp-backend-production-11ff.up.railway.app/api/weather?lat=${lat}&lon=${long}`);
             setWeatherData(response.data);
           }
           catch(error){
