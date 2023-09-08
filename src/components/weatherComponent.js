@@ -28,14 +28,11 @@ function GetWeather(props)
   }, [lat, long]);
 
   const gridStyle = {
-    border: '2px', // Define the border properties here
-    padding: '0.5px', // Optional: Add padding to space content from the border
+    border: '2px',
+    padding: '0.5px',
     margin: '5px',
     borderRadius: '30px',
-   // backgroundColor: '#49515f',
-   backgroundColor: 'rgba(73, 81, 95, 0.75)',
-    
-    //#F8F8F8
+    backgroundColor: 'rgba(73, 81, 95, 0.75)',
   };
 
   return (
@@ -44,7 +41,7 @@ function GetWeather(props)
           <div>
 
             <Container>
-                <Grid container sx={{border: 1, borderRadius: '30px'}}>
+                <Grid container sx={{border: 1, borderRadius: '30px', marginTop: '20px', height: '50vw'}} >
                   <Grid  xs={6}>
                      <h1 style={{textAlign: 'left', paddingLeft: '30px'}}>{weatherData.location.name}</h1>
                      <h2 style={{textAlign: 'left', paddingLeft: '30px', color: '#49515f'}}>{weatherData.location.region}</h2>

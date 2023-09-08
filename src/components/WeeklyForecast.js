@@ -10,16 +10,15 @@ function getWeeklyForecast(props)
     }
 
     const gridStyle = {
-        border: '2px', // Define the border properties here
-        padding: '0.5px', // Optional: Add padding to space content from the border
+        border: '2px',
+        padding: '0.5px',
         margin: '5px',
         borderRadius: '30px',
-        //#F8F8F8
       };
   
       const subGridStyle = {
         textAlign: 'center',
-        borderRight: '1px solid #282c34', // Add a border on the right
+        borderRight: '1px solid #282c34',
         '&:lastChild': {
           borderRight: 'none',
         },

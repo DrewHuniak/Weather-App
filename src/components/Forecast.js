@@ -28,16 +28,15 @@ function GetForecast(props)
       );
     }
     const gridStyle = {
-      border: '2px', // Define the border properties here
-      padding: '0.5px', // Optional: Add padding to space content from the border
+      border: '2px',
+      padding: '0.5px', 
       margin: '5px',
       borderRadius: '30px',
-      //#F8F8F8
     };
 
     const subGridStyle = {
       textAlign: 'center',
-      borderRight: '1px solid #282c34', // Add a border on the right
+      borderRight: '1px solid #282c34', 
       '&:lastChild': {
         borderRight: 'none',
       },
@@ -50,13 +49,13 @@ function GetForecast(props)
             {Array.from( {length: 6}).map((_, index) => (
                 <Grid style={{...subGridStyle, borderRight: index < 5 ? '0.5px solid #282c34' : 'none'}} xs={2} key={index}>
                 {(() =>{
-                    const hourIndex = (currentHour + index + 1) % 24;     //If Forecase needs to display both current day and next day temps.
+                    const hourIndex = (currentHour + index + 1) % 24;     //If Forecast needs to display both current day and next day temps.
                     const dayOffset = (currentHour + index + 1) >= 24 ? 1 : 0;
                     return(
                     <>
-                    <p style={{color: '#282c34'}} >{convertTime(weatherData.forecast.forecastday[0].hour[hourIndex].time)}</p>
-                    <h3><img src={weatherData.forecast.forecastday[dayOffset].hour[hourIndex].condition.icon} alt="Weather Icon"/></h3>
-                    <h3>{weatherData.forecast.forecastday[dayOffset].hour[hourIndex].temp_f}°</h3>
+                      <p style={{color: '#282c34'}} >{convertTime(weatherData.forecast.forecastday[0].hour[hourIndex].time)}</p>
+                      <h3><img src={weatherData.forecast.forecastday[dayOffset].hour[hourIndex].condition.icon} alt="Weather Icon"/></h3>
+                      <h3>{weatherData.forecast.forecastday[dayOffset].hour[hourIndex].temp_f}°</h3>
                     </>
                     );
                 })()}
