@@ -46,9 +46,9 @@ function GetForecast(props)
     return(
         <>
             <p style={{textAlign: 'left', paddingLeft: '30px'}}>Todays Forecast</p>
-            <Grid container spacing={12} style = {gridStyle}>
+            <Grid container xs={12} style = {gridStyle}>
             {Array.from( {length: 6}).map((_, index) => (
-                <Grid style={{...subGridStyle, borderRight: index < 5 ? '1px solid #282c34' : 'none'}} xs={2} key={index}>
+                <Grid style={{...subGridStyle, borderRight: index < 5 ? '0.5px solid #282c34' : 'none'}} xs={2} key={index}>
                 {(() =>{
                     const hourIndex = (currentHour + index + 1) % 24;     //If Forecase needs to display both current day and next day temps.
                     const dayOffset = (currentHour + index + 1) >= 24 ? 1 : 0;

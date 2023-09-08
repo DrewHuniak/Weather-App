@@ -4,6 +4,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 import Forecast from './Forecast';
 import WeeklyForecast from './WeeklyForecast';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function GetWeather(props)
 {
@@ -20,6 +22,7 @@ function GetWeather(props)
           catch(error){
               console.error(error);
           }
+          AOS.init({duration: 2000});
       };
       callApi();
   }, [lat, long]);
@@ -46,12 +49,12 @@ function GetWeather(props)
                      <h1 style={{textAlign: 'left', paddingLeft: '30px'}}>{weatherData.location.name}</h1>
                      <h2 style={{textAlign: 'left', paddingLeft: '30px', color: '#49515f'}}>{weatherData.location.region}</h2>
                   </Grid>
-                  <Grid  xs={6}>
-                    <h1 style={{textAlign: 'left', paddingLeft: '30px'}}>{weatherData.current.temp_f}°</h1>
+                  <Grid xs={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+                    <h1 style={{textAlign: 'left', paddingRight: 'auto', margin: 'auto 0', fontSize: '10vw'}}>{weatherData.current.temp_f}°</h1>
                   </Grid>
                 </Grid>
 
-                <Grid container style={gridStyle}>
+                <Grid container style={gridStyle} data-aos="fade-up">
                     <Grid  xs={3}>
                       <p>Feels Like</p>
                       <h3>{weatherData.current.feelslike_f}°</h3>
@@ -70,11 +73,11 @@ function GetWeather(props)
                     </Grid>
                 </Grid>
 
-              <Grid container style={gridStyle}>
+              <Grid container style={gridStyle} data-aos="zoom-in">
                   <Forecast weatherData={weatherData}/>
               </Grid>
 
-              <Grid container style={gridStyle}>
+              <Grid container style={gridStyle} data-aos="fade-down">
                   <WeeklyForecast weatherData = {weatherData}/>
               </Grid>
 
